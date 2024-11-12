@@ -1,0 +1,18 @@
+<service>
+    <id>todoWallpaperSrv</id>
+    <name>todoWallpaperSrv</name>
+    <description>todo wallpaper service by winsw.</description>
+    <executable>C:\ProgramData\miniconda3\pythonw.exe</executable>
+    <arguments>todoWallpaper.py</arguments>
+    <workingdirectory>C:\dev\todoWallpaper</workingdirectory>
+
+
+    <delayedAutoStart>true</delayedAutoStart>
+    <resetfailure>5 mins</resetfailure>
+
+    <onfailure action="restart" delay="30 sec"/>
+    <onfailure action="restart" delay="60 sec"/>
+    <onfailure action="restart" delay="60 sec"/>
+
+    <log mode="roll"></log>
+</service>
