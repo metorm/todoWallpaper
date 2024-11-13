@@ -70,7 +70,7 @@ Actually, this project does not rely on the unique format of todo.txt, you can p
 2. 克隆或下载此仓库到您的本地计算机。
 
 ##### 步骤 2: 配置服务
-1. 导航到仓库目录中的 `todoWallpaper.xml` 文件所在位置。
+1. 导航到仓库目录中的 `todoWallpaper.py` 文件所在位置。
 2. 在`Install.ps1`文件上点击右键，并选择 "使用Powershell运行"。
 3. 按提示输出用来运行todoWallpaper.py脚本的python解释器路径。一般应使用`pythonw.exe`，以避免运行窗口。
 4. 后续工作将自动进行；如果需要更改配置选择，可以选择修改`Install.ps1`文件，或直接修改已经创建的计划任务。
@@ -86,7 +86,7 @@ The following steps will guide you on how to use the scheduled task to place the
 2. Clone or download this repository to your local computer.
 
 ##### Step 2: Configure the service
-1. Navigate to the location of the `todoWallpaper.xml` file in the repository directory.
+1. Navigate to the location of the `todoWallpaper.py` file in the repository directory.
 2. Right-click on the `Install.ps1` file and select "Run with Powershell".
 3. Follow the prompts to output the path to the python interpreter used to run the todoWallpaper.py script. Generally, `pythonw.exe` should be used to avoid running the window.
 4. Subsequent work will be carried out automatically; if you need to change the configuration selection, you can choose to modify the `Install.ps1` file, or directly modify the already created scheduled task.
@@ -201,17 +201,29 @@ We welcome contributions! Please open a Pull Request or create an Issue to discu
 TODOs:
 
 [ ] 更多的测试和错误修复
+
 [ ] 改进说明文档
+
 [ ] 适当地支持多显示器（同时考虑热插拔显示器）
+
 [ ] 支持多种填充方式，而不是简单的resize
+
 [ ] 图形配置界面
+
 [ ] Linux / MacOS 支持
 
+---
+
 [ ] More testing and bug fixes
+
 [ ] Improved documentation
+
 [ ] Proper support for multiple monitors (also takes hotplugging into account)
+
 [ ] Support for multiple fill modes instead of simple resize
+
 [ ] Graphical configuration interface
+
 [ ] Linux / MacOS support
 
 ## 版本历史 (Version History)
