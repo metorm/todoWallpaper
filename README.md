@@ -2,9 +2,9 @@
 
 ## 简介 (Introduction)
 
-Wallpaper Todos 是一个开源的Python脚本，它可以将您的待办事项（todo.txt格式）渲染到桌面壁纸之上，从而在您的工作环境中不断提醒您尚未完成的任务。
+todoWallpaper 是一个开源的Python脚本，它可以将您的待办事项（todo.txt格式）渲染到桌面壁纸之上，从而在您的工作环境中不断提醒您尚未完成的任务。
 
-Wallpaper Todos is an open-source Python script that overlays your to-do items (in todo.txt format) onto your desktop wallpaper, providing a constant reminder of pending tasks in your working environment.
+todoWallpaper is an open-source Python script that overlays your to-do items (in todo.txt format) onto your desktop wallpaper, providing a constant reminder of pending tasks in your working environment.
 
 实际上，本项目并不依赖于 todo.txt 的独特格式，您可以将数据源指向任何文本文件。但我想其他类型的文件并没有实时渲染到您的壁纸上的必要。
 
