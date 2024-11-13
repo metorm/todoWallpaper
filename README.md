@@ -235,6 +235,6 @@ Special thanks to all contributors and users of this project!
 
 [winsw - Windows Service Wrapper in a permissive license](https://github.com/winsw/winsw)
 
-项目开发重度使用了[智谱清言](https://chatglm.cn)。
+项目开发重度使用了[智谱清言](https://chatglm.cn)和[KIMI](https://kimi.moonshot.cn)。
 
-The project development made heavy use of [Zhipu Qingyan](https://chatglm.cn).
+The project development made heavy use of [Chat GLM](https://chatglm.cn) and [KIMI](https://kimi.moonshot.cn).
