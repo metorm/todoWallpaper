@@ -5,7 +5,7 @@
     <executable>C:\ProgramData\miniconda3\pythonw.exe</executable>
     <arguments>todoWallpaper.py</arguments>
     <workingdirectory>C:\dev\todoWallpaper</workingdirectory>
-
+    <interactive />
 
     <delayedAutoStart>true</delayedAutoStart>
     <resetfailure>5 mins</resetfailure>
