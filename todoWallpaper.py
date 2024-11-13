@@ -106,6 +106,7 @@ while True:
         else:
             logging.info("todo text not changed, skipping current iteration ...")
             logging.info("Waiting for %d seconds...", update_interval)
+            file.close()
             time.sleep(update_interval)
             continue
 
