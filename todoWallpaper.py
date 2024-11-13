@@ -58,12 +58,16 @@ def rounded_rectangle(draw, xy, radius, fill=None, outline=None):
 
 
 logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filename=os.path.abspath("runLog.log"),  # 指定日志文件路径
 )
+
 
 # 读取配置文件
 config = ConfigParser()
 config.read("todo-config.ini", encoding="utf-8-sig")
+logging.info("Config loaded successfully")
 
 # 获取配置信息
 todosrc = config.get("src", "todosrc")
@@ -82,6 +86,8 @@ alpha = config.getint("render", "alpha")
 inner_padding_o = config.getint("render", "inner_padding")
 outer_padding_o = config.getint("render", "outer_padding")
 
+logging.info("Config loaded successfully")
+
 # 将十六进制背景色转换为RGB
 background_rgb = tuple(int(background_color[i : i + 2], 16) for i in (0, 2, 4))
 text_rgb = tuple(int(text_color[i : i + 2], 16) for i in (0, 2, 4))
@@ -89,15 +95,16 @@ text_rgb = tuple(int(text_color[i : i + 2], 16) for i in (0, 2, 4))
 # 无限循环直到关机
 last_todo_text = ""
 while True:
+    logging.info("Starting yet another loop")
 
     # 读取todo文件内容
     with open(todosrc, "r", encoding="utf-8") as file:
         todo_text = file.read()
         if last_todo_text != todo_text:
-            logging.info("todo text changed")
+            logging.info("todo text changed, drawing new wallpaper ...")
             last_todo_text = todo_text
         else:
-            logging.info("todo text not changed")
+            logging.info("todo text not changed, skipping current iteration ...")
             logging.info("Waiting for %d seconds...", update_interval)
             time.sleep(update_interval)
             continue
@@ -110,6 +117,7 @@ while True:
         if os.path.isfile(os.path.join(wallpaper_dir, f))
     ]
     wallpaper_path = os.path.join(wallpaper_dir, random.choice(wallpapers))
+    logging.info("Random wallpaper selected: %s", wallpaper_path)
 
     # 读取图片
     image = Image.open(wallpaper_path)
@@ -122,6 +130,7 @@ while True:
 
         # ratio = (image.width / screen_width + image.height / screen_height) / 2
         image = image.resize((screen_width, screen_height))
+        logging.info("Image resized to screen size: %dx%d", image.width, image.height)
 
     ratio = 1
 
@@ -141,6 +150,7 @@ while True:
     text_bbox = draw.textbbox((0, 0), todo_text, font=font, spacing=line_spacing)
     text_width = text_bbox[2] - text_bbox[0]
     text_height = text_bbox[3] - text_bbox[1]
+    logging.info("Text box size: %dx%d", text_width, text_height)
 
     # 根据对齐方式计算文本位置
     if alignX == "right":
@@ -224,6 +234,7 @@ while True:
     # the_wallpaper_path = f"theWallpaper.{file_extension}"
     the_wallpaper_path = f"theWallpaper.png"
     image.save(the_wallpaper_path)
+    logging.info("Wallpaper saved to %s", the_wallpaper_path)
 
     # 设置壁纸
     set_wallpaper(os.path.abspath(the_wallpaper_path))

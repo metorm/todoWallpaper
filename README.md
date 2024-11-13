@@ -60,100 +60,39 @@ Actually, this project does not rely on the unique format of todo.txt, you can p
     python wallpaper_todos.py
     ```
 
-### 安装为服务 (Install as Service)
+### 安装为后台计划任务 (Install as a background task)
 
-#### 安装 `todoWallpaper` 作为 Windows 服务
-以下步骤将指导您如何使用 Windows Service Wrapper (winsw) 将 `todoWallpaper` 脚本安装为 Windows 服务。
+#### 安装 `todoWallpaper` 作为 Windows 计划任务项目
+以下步骤将指导您如何使用计划任务，将脚本放置于后台，开机自动启动，后台运行。
 
 ##### 步骤 1: 准备工作
 1. 确保您已经安装了 Python 并配置了环境变量。
 2. 克隆或下载此仓库到您的本地计算机。
-3. 如果您对仓库中提供的 `todoWallpaper.exe` 有安全顾虑，您可以前往 [winsw 项目页面](https://github.com/winsw/winsw) 下载官方的 `winsw.exe` 可执行文件，并将其重命名为 `todoWallpaper.exe` 来替代仓库中提供的版本。
 
 ##### 步骤 2: 配置服务
-1. 打开命令提示符或 PowerShell。
-2. 导航到仓库目录中的 `todoWallpaper.xml` 文件所在位置。
-3. 使用以下命令安装服务（请根据实际情况替换路径）：
-```shell
-C:\path\to\todoWallpaper.exe install
-```
-例如，如果 `todoWallpaper.exe` 和 `todoWallpaper.xml` 都位于 `C:\dev\todoWallpaper` 目录下，则运行：
-```shell
-C:\dev\todoWallpaper\todoWallpaper.exe install
-```
-这将根据 `todoWallpaper.xml` 文件中的配置将 `todoWallpaper` 安装为 Windows 服务。
+1. 导航到仓库目录中的 `todoWallpaper.xml` 文件所在位置。
+2. 在`Install.ps1`文件上点击右键，并选择 "使用Powershell运行"。
+3. 按提示输出用来运行todoWallpaper.py脚本的python解释器路径。一般应使用`pythonw.exe`，以避免运行窗口。
+4. 后续工作将自动进行；如果需要更改配置选择，可以选择修改`Install.ps1`文件，或直接修改已经创建的计划任务。
+5. 如果重复运行上述命令，将自动删除并重新创建计划任务。
+6. 检查服务是否正在运行，这可以通过检查日志文件`runLog.log`来确认。
+7. 如果需要卸载程序，需要手动删除已创建的计划任务，并删除文件夹。
 
-##### 步骤 3: 启动服务
-1. 打开 Windows 服务管理器。您可以通过在开始菜单搜索 "Services" 来找到它。
-2. 找到 `todoWallpaperSrv` 服务。
-3. 右键点击服务并选择 "启动" 来启动服务。
-
-##### 步骤 4: 验证服务
-1. 检查服务是否正在运行，您可以通过服务管理器查看状态，或者检查日志文件来确认。
-2. 如果服务未按预期运行，检查日志文件以获取错误信息。日志文件的位置取决于您的 `todoWallpaper.xml` 配置。
-
-##### 步骤 5: 更新或卸载服务
-- 若要更新服务，请先使用上述命令卸载服务，然后重新安装。
-- 若要卸载服务，请运行以下命令：
-```shell
-C:\path\to\todoWallpaper.exe uninstall
-```
-例如：
-```shell
-C:\dev\todoWallpaper\todoWallpaper.exe uninstall
-```
-这将停止并从 Windows 服务列表中移除 `todoWallpaperSrv`。
-
-##### 注意事项
-- 确保在 `todoWallpaper.xml` 文件中指定的 `executable`、`arguments` 和 `workingdirectory` 路径与您的系统环境相匹配。
-- 如果您更改了 `todoWallpaper.py` 脚本或相关配置文件，可能需要重新启动服务以应用更改。
-通过以上步骤，您应该能够成功地将 `todoWallpaper` 安装并运行为一个 Windows 服务。如果遇到任何问题，请参考日志文件以获取更多信息。
-
-#### Installing `todoWallpaper` as a Windows Service
-Follow the steps below to install `todoWallpaper` as a Windows service using the Windows Service Wrapper (winsw).
+#### Install `todoWallpaper` as a Windows Scheduled Task Project
+The following steps will guide you on how to use the scheduled task to place the script in the background, automatically start it at boot, and run it in the background.
 
 ##### Step 1: Preparation
-1. Ensure that Python is installed on your system and that the environment variables are configured.
-2. Clone or download the repository to your local machine.
-3. If you have security concerns about the provided `todoWallpaper.exe` in the repository, you can download the official `winsw.exe` executable from the [winsw project page](https://github.com/winsw/winsw), rename it to `todoWallpaper.exe`, and use it instead of the version provided in the repository.
+1. Make sure you have Python installed and configured the environment variables.
+2. Clone or download this repository to your local computer.
 
-##### Step 2: Configure the Service
-1. Open Command Prompt or PowerShell.
-2. Navigate to the directory where the `todoWallpaper.xml` file is located within the repository.
-3. Use the following command to install the service (replace the path with the actual path to your executable):
-```shell
-C:\path\to\todoWallpaper.exe install
-```
-For example, if `todoWallpaper.exe` and `todoWallpaper.xml` are located in `C:\dev\todoWallpaper`, run:
-```shell
-C:\dev\todoWallpaper\todoWallpaper.exe install
-```
-This will install `todoWallpaper` as a Windows service based on the configuration in the `todoWallpaper.xml` file.
-
-##### Step 3: Start the Service
-1. Open the Windows Services Manager. You can find it by searching for "Services" in the Start menu.
-2. Locate the `todoWallpaperSrv` service.
-3. Right-click on the service and select "Start" to start the service.
-
-##### Step 4: Verify the Service
-1. Check if the service is running by looking at its status in the Services Manager or by checking the log file.
-2. If the service is not running as expected, check the log file for error messages. The location of the log file depends on your `todoWallpaper.xml` configuration.
-
-##### Step 5: Update or Uninstall the Service
-- To update the service, uninstall it first using the command above, then reinstall it.
-- To uninstall the service, run the following command:
-```shell
-C:\path\to\todoWallpaper.exe uninstall
-```
-For example:
-```shell
-C:\dev\todoWallpaper\todoWallpaper.exe uninstall
-```
-This will stop and remove `todoWallpaperSrv` from the Windows services list.
-##### Notes
-- Ensure that the paths specified for `executable`, `arguments`, and `workingdirectory` in the `todoWallpaper.xml` file match your system environment.
-- If you make changes to the `todoWallpaper.py` script or related configuration files, you may need to restart the service for the changes to take effect.
-By following the steps above, you should be able to successfully install and run `todoWallpaper` as a Windows service. If you encounter any issues, refer to the log file for more detailed information.
+##### Step 2: Configure the service
+1. Navigate to the location of the `todoWallpaper.xml` file in the repository directory.
+2. Right-click on the `Install.ps1` file and select "Run with Powershell".
+3. Follow the prompts to output the path to the python interpreter used to run the todoWallpaper.py script. Generally, `pythonw.exe` should be used to avoid running the window.
+4. Subsequent work will be carried out automatically; if you need to change the configuration selection, you can choose to modify the `Install.ps1` file, or directly modify the already created scheduled task.
+5. If you run the above command repeatedly, the scheduled task will be automatically deleted and recreated.
+6. Check if the service is running. This can be confirmed by checking the log file `runLog.log`.
+7. If you need to uninstall the program, you need to manually delete the created scheduled task and delete the folder.
 
 ## 配置 (Configuration)
 
